@@ -189,8 +189,8 @@ footer .hand{font-size:1.15rem}
 .prose{max-width:68ch}
 .prose h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin:0 0 14px}
 .rule-list{list-style:none;margin:0;padding:0;display:grid;gap:12px;max-width:760px}
-.rule-list li{padding:14px 18px;border-left:4px solid var(--brick);background:var(--paper-2);border-radius:0 10px 10px 0}
-.rule-list b{display:block}
+.rule-list li{padding:14px 18px;border-left:4px solid var(--brick);background:var(--paper-2);color:var(--ink-soft);border-radius:0 10px 10px 0}
+.rule-list b{display:block;color:var(--ink)}
 .shots{display:grid;gap:44px}
 .shots figure{margin:0}
 .shots figcaption{margin-top:12px;color:var(--ink-soft);max-width:62ch}
