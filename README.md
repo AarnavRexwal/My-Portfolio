@@ -16,7 +16,7 @@ Personal portfolio of **Aarnav Rexwal**, a Java and Spring Boot developer from L
 | Project | Stack | Links |
 |---|---|---|
 | BlogSpace | Java, Spring Boot, JWT, MySQL on AWS RDS, React, Vite, Nginx, AWS EC2, Vercel | [Live site](https://blog-app-frontend-chi-brown.vercel.app/) · [API](https://github.com/AarnavRexwal/Blog-app-apis) · [Frontend](https://github.com/AarnavRexwal/blog-app-frontend) |
-| Presence (in progress) | Java, Spring Boot, React, MySQL | Code goes public once deployed |
+| Presence | Java, Spring Boot, React, MySQL | [Live site](https://hrms-fronted-two.vercel.app) · Code in private repos |
 
 ## Tech
 
