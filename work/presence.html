@@ -27,7 +27,7 @@
   <p class="lede">An attendance and HR system for a company: who came in, who’s on leave, who needs approval, and what to pay at month end.</p>
   <div class="cta"><a class="btn" href="https://hrms-fronted-two.vercel.app" target="_blank" rel="noopener">Open the live site</a></div>
   <p class="hand">Live now. The backend and frontend repos are private; ask me and I’ll walk you through the code. Screens below use sample data.</p>
-  <dl class="case-meta"><div><dt>Role</dt><dd>Solo, everything</dd></div><div><dt>Stack</dt><dd>Java, Spring Boot, React, MySQL</dd></div><div><dt>People it serves</dt><dd>Employees, managers, HR admins</dd></div></dl>
+  <dl class="case-meta"><div><dt>Role</dt><dd>Solo, everything</dd></div><div><dt>Stack</dt><dd>Java 17, Spring Boot 3, React 18, MySQL</dd></div><div><dt>Hosting</dt><dd>AWS EC2 with Nginx, Vercel</dd></div><div><dt>Tests</dt><dd>209 backend, 49 frontend</dd></div><div><dt>People it serves</dt><dd>Employees, managers, HR admins</dd></div></dl>
 </div></section>
 
 <section class="sec"><div class="wrap">
@@ -54,6 +54,18 @@
 </div></section>
 
 <section class="sec"><div class="wrap prose">
+  <h2>How it’s built</h2>
+  <p>A Spring Boot API with 30+ REST controllers and a React app with 27 pages.</p>
+  <ul class="rule-list" style="margin-bottom:56px">
+    <li><b>Location-checked check-in</b>The server compares the employee’s GPS position with the office radius, logs attempts from outside it, and looks up the address through the Geoapify API.</li>
+    <li><b>Payroll with exports</b>Salary structures, adjustments and a finalise step, with Excel and PDF exports built on Apache POI and OpenPDF.</li>
+    <li><b>Scheduled jobs</b>Payroll runs, monthly leave credits and missing check-out detection happen on their own.</li>
+    <li><b>Roles enforced twice</b>Spring Security and JWT guard every API endpoint by role, and the React routes check the same roles.</li>
+    <li><b>Schema in version control</b>38 Flyway migrations build the database, so a fresh server gets the same schema as my laptop.</li>
+    <li><b>No demo accounts in production</b>The first HR admin is created on startup from server settings, instead of shipping seeded logins.</li>
+    <li><b>Tested on the real database</b>209 backend tests run on H2 and MySQL; 49 frontend tests use Vitest and React Testing Library.</li>
+    <li><b>Deployed</b>The API runs on AWS EC2 (Ubuntu, systemd, MySQL) behind Nginx with HTTPS. The frontend is on Vercel.</li>
+  </ul>
   <h2>Rules live in data, not in code</h2>
   <p>HR can change these from settings, so nobody needs a new release.</p>
   <ul class="rule-list">
