@@ -1,6 +1,6 @@
 # Aarnav Rexwal — Portfolio
 
-Personal portfolio of **Aarnav Rexwal**, a Java and Spring Boot developer from Lucknow, India. Final-year B.Tech (Computer Science) student at DSMNRU and IT Application Development & Support intern at Transsion India.
+Personal portfolio of **Aarnav Rexwal**, a Java and Spring Boot developer from Lucknow, India. Final-year B.Tech (Computer Science) student at DSMNRU who completed an IT Application Development & Support internship at Transsion India (Aug–Nov 2026).
 
 **Live site:** _add your Vercel link here after deploying_
 

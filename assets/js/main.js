@@ -1,9 +1,77 @@
 (function () {
   var root = document.documentElement;
+  // Opening sequence: loader, curtain, then the hero comes in piece by piece.
+  if (root.classList.contains('intro-on')) {
+    var word = document.getElementById('intro-word'), fill = document.getElementById('intro-fill'),
+        count = document.getElementById('intro-count'), intro = document.querySelector('.intro');
+    var words = [['Namaste', 'en'], ['नमस्ते', 'hi'], ['Hello', 'en'], ['Namaste', 'en']], wi = 0;
+    var cycle = setInterval(function () {
+      wi = Math.min(wi + 1, words.length - 1);
+      word.classList.remove('swap'); void word.offsetWidth; word.classList.add('swap');
+      word.textContent = words[wi][0]; word.lang = words[wi][1];
+    }, 380);
+    var t0 = performance.now(), MIN = 1500;
+    var heroImg = document.querySelector('.portrait img');
+    var assets = Promise.all([
+      document.fonts ? document.fonts.ready : Promise.resolve(),
+      heroImg && !heroImg.complete ? new Promise(function (r) { heroImg.onload = heroImg.onerror = r; }) : Promise.resolve()
+    ]);
+    var cap = new Promise(function (r) { setTimeout(r, 3200); });
+    var loaded = false; Promise.race([assets, cap]).then(function () { loaded = true; });
+    (function tick(now) {
+      var p = Math.min((now - t0) / MIN, 1);
+      if (!loaded) p = Math.min(p, 0.9);
+      var e = 1 - Math.pow(1 - p, 3);
+      fill.style.transform = 'scaleX(' + e + ')';
+      count.textContent = String(Math.round(e * 100)).padStart(3, '0');
+      if (p < 1) return requestAnimationFrame(tick);
+      clearInterval(cycle);
+      try { sessionStorage.setItem('intro-seen', '1'); } catch (er) {}
+      setTimeout(function () {
+        root.classList.add('intro-out', 'ready');
+        setTimeout(function () {
+          root.classList.remove('intro-on', 'intro-out');
+          if (intro) intro.remove();
+        }, 1300);
+      }, 220);
+    })(t0);
+  } else if (root.classList.contains('anim')) {
+    requestAnimationFrame(function () { root.classList.add('ready'); });
+  }
   var store = {
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   };
+
+  // Mobile menu: collapse a long nav behind a button
+  var navBar = document.querySelector('.nav'), navEl = navBar && navBar.querySelector('nav');
+  if (navEl && navEl.querySelectorAll('a').length > 3) {
+    navBar.classList.add('has-menu');
+    navEl.id = navEl.id || 'site-menu';
+    var mb = document.createElement('button');
+    mb.className = 'menu-btn'; mb.type = 'button';
+    mb.setAttribute('aria-controls', navEl.id); mb.setAttribute('aria-expanded', 'false');
+    mb.setAttribute('aria-label', 'Open menu');
+    mb.innerHTML = '<span></span>';
+    var tools = document.createElement('div'); tools.className = 'nav-tools';
+    var swb = navBar.querySelector('.switch');
+    if (swb) tools.appendChild(swb);
+    tools.appendChild(mb);
+    navBar.querySelector('.wrap').appendChild(tools);
+    var setMenu = function (open) {
+      navBar.classList.toggle('open', open);
+      root.classList.toggle('menu-open', open);
+      mb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mb.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    mb.addEventListener('click', function () { setMenu(!navBar.classList.contains('open')); });
+    navEl.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navBar.classList.contains('open')) { setMenu(false); mb.focus(); }
+    });
+    document.addEventListener('click', function (e) { if (!navBar.contains(e.target)) setMenu(false); });
+    window.matchMedia('(min-width: 761px)').addEventListener('change', function (m) { if (m.matches) setMenu(false); });
+  }
 
   // Motion switch
   var sw = document.querySelector('.switch');
