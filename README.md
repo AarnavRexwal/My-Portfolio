@@ -39,7 +39,7 @@ Plain HTML, CSS and JavaScript. No framework and no build step.
     ├── js/main.js          Hero motion, greeting toggle, attendance demo
     ├── img/                Portraits and Presence screenshots
     ├── favicon.svg
-    └── Aarnav_Rexwal_Resume.pdf
+    └── Aarnav_Rexwal_Resume_Public.pdf
 ```
 
 ## Run locally
