@@ -64,7 +64,7 @@ It also works on Netlify, Cloudflare Pages and GitHub Pages, because every link 
 ## Contact
 
 - Email: aarnavrexwal9@gmail.com
-- LinkedIn: [linkedin.com/in/aarnav-rexwal-a05599411](https://www.linkedin.com/in/aarnav-rexwal-a05599411)
+- LinkedIn: [linkedin.com/in/aarnav-rexwal](https://www.linkedin.com/in/aarnav-rexwal)
 - GitHub: [@AarnavRexwal](https://github.com/AarnavRexwal)
 
 ## Notes
